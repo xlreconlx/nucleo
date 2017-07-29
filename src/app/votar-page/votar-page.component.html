@@ -1,0 +1,48 @@
+<div class="container">
+<div class="input-field col s2" style="margin-top: 50px;">
+    <select [(ngModel)]="idCategoria" class="browser-default">
+        <option disabled [value]="1" [selected]="1 == idCategoria">Escoja una Categoria</option>
+        <ng-container *ngFor="let item of lstCategorias | async">
+         <option [value]="item.$key" [selected]="item.$key == idCategoria">{{item.nombre}}</option>
+        </ng-container>
+      </select>
+  </div>
+<form  class="form-signin" #heroForm="ngForm" (submit)="saveArtista($event)">
+     <div class="input-field col s6">
+        <input [(ngModel)]="nombre" #name="ngModel" [ngModelOptions]="{standalone: true}" type="text" id="nombre" class="form-control"  required>
+        <label for="nombre">Nombre Artista</label>
+     </div>
+      <button class="btn light-blue waves-effect waves-light btn-submit" type="submit">Registrar Artista</button>
+    </form>
+    <br>
+    <ul class="collapsible" data-collapsible="accordion">
+    <ng-container *ngFor="let item of lstCategorias | async">
+  <li (click)="showModal('modal1',item.$key)">
+    <div class="collapsible-header">{{item.nombre}}</div>
+  </li>
+   </ng-container>
+</ul>
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+       <div class="row">
+       <ul class="collection with-header">
+        <ng-container  *ngFor="let art of lstArtista | async">
+         <li class="collection-item">
+         <div>{{art.nombre}}
+         <a (click)="saveUserVoto($event,art.$key)" href="" class="secondary-content">
+         <i class="material-icons">favorite_border</i>
+         </a>
+         </div>
+         </li>
+        </ng-container>
+      </ul>
+      </div>
+    <div class="modal-footer">
+      <a onclick="$('#modal1').modal().modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+    </div>
+  </div>
+
+</div>
+
+</div>

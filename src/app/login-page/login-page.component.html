@@ -1,0 +1,9 @@
+<div class="modal-dialog">
+  <div class="loginmodal-container z-depth-4 center-align">
+    <h1>Ingresa con Facebook</h1><br>
+    <div class="form-signin">
+         <a *ngIf="mensaje" class="collection-item">{{mensaje}}</a>
+      <button class="btn light-blue waves-effect waves-light btn-submit" (click)="loginWithFacebook()">Ingresar</button>
+   </div>
+  </div>
+</div>
