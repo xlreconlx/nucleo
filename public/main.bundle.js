@@ -307,7 +307,7 @@ var AF = (function () {
     AF.prototype.saveUser = function (uid, correo, displayName) {
         var user = {
             email: correo,
-            name: displayName
+            username: displayName
         };
         this.af.object('registeredUsers/' + uid).set(user);
     };
@@ -354,7 +354,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".categoria{\r\n\tcursor: pointer;\r\n}", ""]);
 
 // exports
 
@@ -367,7 +367,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/votar-page/votar-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n<div class=\"input-field col s2\" style=\"margin-top: 50px;\">\n    <select [(ngModel)]=\"idCategoria\" class=\"browser-default\">\n        <option disabled [value]=\"1\" [selected]=\"1 == idCategoria\">Escoja una Categoria</option>\n        <ng-container *ngFor=\"let item of lstCategorias | async\">\n         <option [value]=\"item.$key\" [selected]=\"item.$key == idCategoria\">{{item.nombre}}</option>\n        </ng-container>\n      </select>\n  </div>\n<form  class=\"form-signin\" #heroForm=\"ngForm\" (submit)=\"saveArtista($event)\">\n     <div class=\"input-field col s6\">\n        <input [(ngModel)]=\"nombre\" #name=\"ngModel\" [ngModelOptions]=\"{standalone: true}\" type=\"text\" id=\"nombre\" class=\"form-control\"  required>\n        <label for=\"nombre\">Nombre Artista</label>\n     </div>\n      <button class=\"btn light-blue waves-effect waves-light btn-submit\" type=\"submit\">Registrar Artista</button>\n    </form>\n    <br>\n    <ul class=\"collapsible\" data-collapsible=\"accordion\">\n    <ng-container *ngFor=\"let item of lstCategorias | async\">\n  <li (click)=\"showModal('modal1',item.$key)\">\n    <div class=\"collapsible-header\">{{item.nombre}}</div>\n  </li>\n   </ng-container>\n</ul>\n<!-- Modal Structure -->\n  <div id=\"modal1\" class=\"modal\">\n    <div class=\"modal-content\">\n       <div class=\"row\">\n       <ul class=\"collection with-header\">\n        <ng-container  *ngFor=\"let art of lstArtista | async\">\n         <li class=\"collection-item\">\n         <div>{{art.nombre}}\n         <a (click)=\"saveUserVoto($event,art.$key)\" href=\"\" class=\"secondary-content\">\n         <i class=\"material-icons\">favorite_border</i>\n         </a>\n         </div>\n         </li>\n        </ng-container>\n      </ul>\n      </div>\n    <div class=\"modal-footer\">\n      <a onclick=\"$('#modal1').modal().modal('close');\" class=\"modal-action modal-close waves-effect waves-green btn-flat\">Cancelar</a>\n    </div>\n  </div>\n\n</div>\n\n</div>\n"
+module.exports = "<div class=\"container\">\n<div class=\"input-field col s2\" style=\"margin-top: 50px;\">\n    <select [(ngModel)]=\"idCategoria\" class=\"browser-default\">\n        <option disabled [value]=\"1\" [selected]=\"1 == idCategoria\">Escoja una Categoria</option>\n        <ng-container *ngFor=\"let item of lstCategorias | async\">\n         <option [value]=\"item.$key\" [selected]=\"item.$key == idCategoria\">{{item.nombre}}</option>\n        </ng-container>\n      </select>\n  </div>\n<form  class=\"form-signin\" #heroForm=\"ngForm\" (submit)=\"saveArtista($event)\">\n     <div class=\"input-field col s6\">\n        <input [(ngModel)]=\"nombre\" #name=\"ngModel\" [ngModelOptions]=\"{standalone: true}\" type=\"text\" id=\"nombre\" class=\"form-control\"  required>\n        <label for=\"nombre\">Nombre Artista</label>\n     </div>\n      <button class=\"btn light-blue waves-effect waves-light btn-submit\" type=\"submit\">Registrar Artista</button>\n    </form>\n    <br>\n    <div class=\"row\">\n    <ng-container *ngFor=\"let item of lstCategorias | async\">\n    <div class=\"col s12 m6 categoria\">\n    <div class=\"card horizontal hoverable z-depth-2\" (click)=\"showModal('modal1',item.$key)\">\n      <div class=\"card-stacked\">\n        <div class=\"card-content\">\n          <p class=\"center-align\">{{item.nombre}}\n          </p>\n         </div>\n      </div>\n    </div>\n    </div>\n    </ng-container>\n    </div>\n<!-- Modal Structure -->\n  <div id=\"modal1\" class=\"modal\">\n    <div class=\"modal-content\">\n       <div class=\"row\">\n        <ng-container  *ngFor=\"let art of lstArtista | async\">\n<div class=\"col s12 m6\">\n    <div class=\"card horizontal hoverable\" style=\"height: 100px;\">\n      <div class=\"card-stacked\">\n        <div class=\"card-content\">\n          <p class=\"center-align\">{{art.nombre}}\n           <a (click)=\"saveUserVoto($event,art.$key)\" href=\"\" class=\"right\">\n           <i class=\"material-icons\">favorite_border</i>\n         </a>\n          </p>\n         </div>\n      </div>\n    </div>\n  </div>\n        </ng-container>\n      </div>\n    <div class=\"modal-footer\">\n      <a onclick=\"$('#modal1').modal().modal('close');\" class=\"modal-action modal-close waves-effect waves-green btn-flat\">Cancelar</a>\n    </div>\n  </div>\n\n</div>\n\n</div>\n"
 
 /***/ }),
 

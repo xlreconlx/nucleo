@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AF } from "./providers/af";
 import { Router, ActivatedRoute,NavigationStart } from "@angular/router";
+declare var $:any;
 
 @Component({
   selector: 'app-root',
@@ -19,11 +20,11 @@ constructor(public afService: AF, private router: Router,private activatedRoute:
        });
        this.afService.user1.subscribe(  (auth) => {
         if(auth == null) {
-          console.log("No esta logueado");
+   //       console.log("No esta logueado");
           this.isLoggedIn = false;
           this.router.navigate(['login']);
         } else {
-          console.log("Correcto.");
+    //      console.log("Correcto.");
           this.afService.uid = auth.uid;
           this.afService.email = auth.email;
           this.email =  this.afService.email;

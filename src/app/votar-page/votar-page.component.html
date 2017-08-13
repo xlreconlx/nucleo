@@ -15,28 +15,39 @@
       <button class="btn light-blue waves-effect waves-light btn-submit" type="submit">Registrar Artista</button>
     </form>
     <br>
-    <ul class="collapsible" data-collapsible="accordion">
+    <div class="row">
     <ng-container *ngFor="let item of lstCategorias | async">
-  <li (click)="showModal('modal1',item.$key)">
-    <div class="collapsible-header">{{item.nombre}}</div>
-  </li>
-   </ng-container>
-</ul>
+    <div class="col s12 m6 categoria">
+    <div class="card horizontal hoverable z-depth-2" (click)="showModal('modal1',item.$key)">
+      <div class="card-stacked">
+        <div class="card-content">
+          <p class="center-align">{{item.nombre}}
+          </p>
+         </div>
+      </div>
+    </div>
+    </div>
+    </ng-container>
+    </div>
 <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
        <div class="row">
-       <ul class="collection with-header">
         <ng-container  *ngFor="let art of lstArtista | async">
-         <li class="collection-item">
-         <div>{{art.nombre}}
-         <a (click)="saveUserVoto($event,art.$key)" href="" class="secondary-content">
-         <i class="material-icons">favorite_border</i>
+<div class="col s12 m6">
+    <div class="card horizontal hoverable" style="height: 100px;">
+      <div class="card-stacked">
+        <div class="card-content">
+          <p class="center-align">{{art.nombre}}
+           <a (click)="saveUserVoto($event,art.$key)" href="" class="right">
+           <i class="material-icons">favorite_border</i>
          </a>
+          </p>
          </div>
-         </li>
+      </div>
+    </div>
+  </div>
         </ng-container>
-      </ul>
       </div>
     <div class="modal-footer">
       <a onclick="$('#modal1').modal().modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>

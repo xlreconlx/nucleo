@@ -37,7 +37,7 @@ export class AF {
 saveUser(uid:string,correo:string,displayName:string){
   var user = {
      email:correo,
-     name:displayName
+     username:displayName
   };
      this.af.object('registeredUsers/'+uid).set(user);
 }

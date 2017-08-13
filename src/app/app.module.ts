@@ -8,6 +8,8 @@ import {RouterModule, Routes} from "@angular/router";
 import { FormsModule } from '@angular/forms';
 
 import {AF} from "./providers/af";
+import {CA} from "./providers/CanActivateViaAuthGuard";
+import {CAV} from "./providers/CanActiveVotos";
 
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -19,8 +21,16 @@ const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
-   { path: 'login', component: LoginPageComponent},
-   { path: 'votar', component: VotarPageComponent},
+   { 
+     path: 'login', 
+     component: LoginPageComponent,
+     canActivate: [CA]
+    },
+    { 
+      path: 'votar',
+      component: VotarPageComponent,
+      canActivate: [CAV]
+    },
 ];
 
 @NgModule({
@@ -37,7 +47,9 @@ const routes: Routes = [
     AngularFireAuthModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AF],
+  providers: [AF,
+  CA,
+  CAV],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
