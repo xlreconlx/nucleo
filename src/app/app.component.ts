@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AF } from "./providers/af";
 import { Router, ActivatedRoute,NavigationStart } from "@angular/router";
+import { AngularFireAuth  } from 'angularfire2/auth';
 declare var $:any;
 
 @Component({
@@ -13,11 +14,14 @@ export class AppComponent {
   public email: string;
   public ruta: string;
 
-constructor(public afService: AF, private router: Router,private activatedRoute: ActivatedRoute){
+constructor(public afService: AF, private router: Router,private activatedRoute: ActivatedRoute,public afAuth: AngularFireAuth){
        this.router.events.subscribe((url:any) => {
          this.ruta = url.url;
          this.ruta = this.ruta.substr(1);
        });
+
+
+
        this.afService.user1.subscribe(  (auth) => {
         if(auth == null) {
    //       console.log("No esta logueado");
@@ -27,9 +31,7 @@ constructor(public afService: AF, private router: Router,private activatedRoute:
     //      console.log("Correcto.");
           this.afService.uid = auth.uid;
           this.afService.email = auth.email;
-          this.email =  this.afService.email;
-          //se registra a el usuario que ingresa
-          this.afService.saveUser(auth.uid,auth.email,auth.displayName);
+          this.email =  auth.displayName;
           this.isLoggedIn = true;
           this.router.navigate(['votar']);
          }

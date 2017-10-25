@@ -16,7 +16,10 @@ export class LoginPageComponent implements OnInit {
   }
 
 loginWithFacebook(){
-    this.afService.login().then(() => {
+    this.afService.login().then((user) => {
+     this.afService.correo = user.user.uid;
+     //se registra a el usuario que ingresa
+     this.afService.saveUser(user.user.uid,user.user.email,user.user.displayName);
      this.router.navigate(['votar']);
      this.mensaje="";
     })

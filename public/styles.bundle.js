@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n@media only screen and (max-width: 600px){\n#toast-container {\n    top: 10% !important;\n    max-height: 50px;\n}\n\n}\n\n@media only screen and (max-width: 992px) and (min-width: 601px){\n\n#toast-container {\n   top: 10% !important;\n   max-height: 50px;\n}\n\n}", ""]);
 
 // exports
 

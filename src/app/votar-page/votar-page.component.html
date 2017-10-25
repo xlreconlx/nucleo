@@ -1,27 +1,15 @@
 <div class="container">
-<div class="input-field col s2" style="margin-top: 50px;">
-    <select [(ngModel)]="idCategoria" class="browser-default">
-        <option disabled [value]="1" [selected]="1 == idCategoria">Escoja una Categoria</option>
-        <ng-container *ngFor="let item of lstCategorias | async">
-         <option [value]="item.$key" [selected]="item.$key == idCategoria">{{item.nombre}}</option>
-        </ng-container>
-      </select>
-  </div>
-<form  class="form-signin" #heroForm="ngForm" (submit)="saveArtista($event)">
-     <div class="input-field col s6">
-        <input [(ngModel)]="nombre" #name="ngModel" [ngModelOptions]="{standalone: true}" type="text" id="nombre" class="form-control"  required>
-        <label for="nombre">Nombre Artista</label>
-     </div>
-      <button class="btn light-blue waves-effect waves-light btn-submit" type="submit">Registrar Artista</button>
-    </form>
-    <br>
+<a (click)="verVotos()" class="waves-effect waves-green btn-flat">Ver votos</a>
     <div class="row">
     <ng-container *ngFor="let item of lstCategorias | async">
     <div class="col s12 m6 categoria">
-    <div class="card horizontal hoverable z-depth-2" (click)="showModal('modal1',item.$key)">
+    <div class="card horizontal hoverable z-depth-2" data-target="modal1" (click)="showModal('modal1',item.$key)">
       <div class="card-stacked">
         <div class="card-content">
-          <p class="center-align">{{item.nombre}}
+        <img src="{{item.img}}" class="imgcate">
+          <p class="center-align" style="font-weight: bold;">{{item.nombre}}
+          </p>
+           <p class="center-align" style="font-weight: bold;font-size:.8em;">Total Votos: {{item.votos}}
           </p>
          </div>
       </div>
@@ -29,6 +17,7 @@
     </div>
     </ng-container>
     </div>
+</div>
 <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
@@ -39,7 +28,7 @@
       <div class="card-stacked">
         <div class="card-content">
           <p class="center-align">{{art.nombre}}
-           <a (click)="saveUserVoto($event,art.$key)" href="" class="right">
+           <a (click)="validaUser($event,art.$key)" href="" class="right">
            <i class="material-icons">favorite_border</i>
          </a>
           </p>
@@ -53,7 +42,5 @@
       <a onclick="$('#modal1').modal().modal('close');" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
     </div>
   </div>
-
-</div>
 
 </div>

@@ -16,6 +16,8 @@ export class AF {
   public categorias: FirebaseListObservable<any>;
   public uid: string;
   public isLogin: boolean;
+  public correo: string;
+
 
   constructor(public afAuth: AngularFireAuth,public af: AngularFireDatabase ) {
     this.user1 = afAuth.authState;  
@@ -35,12 +37,17 @@ export class AF {
 
 //Guarda a el usuario
 saveUser(uid:string,correo:string,displayName:string){
+  //console.log("Crea a el usuario");
+  if(correo === null){
+   correo = displayName.replace(/\s/g,"")+"@facebook.com";
+  }
   var user = {
      email:correo,
-     username:displayName
+     username:displayName,
   };
      this.af.object('registeredUsers/'+uid).set(user);
 }
+
 
 //guarda el artista
 saveArtista(artista:any,uidCategoria:string){
